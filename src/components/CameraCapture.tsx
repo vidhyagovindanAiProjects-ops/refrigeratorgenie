@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 interface CameraCaptureProps {
-  onIngredientsDetected: (ingredients: string[], hasNonFoodItems: boolean, nonFoodItems: string[]) => void;
+  onIngredientsDetected: (ingredients: string[], hasNonFoodItems: boolean, nonFoodItems: string[], imageData: string) => void;
 }
 
 export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => {
@@ -23,6 +23,16 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
       toast({
         title: "Invalid file",
         description: "Please select an image file",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Please select an image smaller than 10MB",
         variant: "destructive",
       });
       return;
@@ -66,15 +76,18 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
       if (data.ingredients.length === 0) {
         toast({
           title: "No ingredients found",
-          description: "Could not detect any food items. Try a clearer photo with better lighting.",
+          description: "Try taking a clearer photo with good lighting and visible items",
           variant: "destructive",
         });
       } else {
         toast({
-          title: "✓ Ingredients detected!",
-          description: `Found ${data.ingredients.length} ingredient(s)`,
+          title: data.hasNonFoodItems ? "⚠️ Items detected with warning" : "✨ Ingredients detected!",
+          description: data.hasNonFoodItems 
+            ? `Found ${data.ingredients.length} food items. Note: ${data.nonFoodItems.join(', ')} detected (non-food).`
+            : `Found ${data.ingredients.length} ingredients in your fridge!`,
+          variant: data.hasNonFoodItems ? "destructive" : "default",
         });
-        onIngredientsDetected(data.ingredients, data.hasNonFoodItems, data.nonFoodItems);
+        onIngredientsDetected(data.ingredients, data.hasNonFoodItems, data.nonFoodItems, imageData);
       }
 
     } catch (error) {
@@ -105,11 +118,14 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
       />
 
       {!capturedImage ? (
-        <div className="relative aspect-[4/3] rounded-2xl border-2 border-dashed border-border bg-secondary/30 flex flex-col items-center justify-center p-8 hover:bg-secondary/50 transition-smooth">
-          <Camera className="w-16 h-16 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Capture Your Fridge</h3>
-          <p className="text-sm text-muted-foreground text-center mb-6">
+        <div className="relative aspect-[4/3] rounded-2xl border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 flex flex-col items-center justify-center p-8 hover:bg-primary/10 transition-smooth">
+          <Camera className="w-16 h-16 text-primary mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-foreground">Capture Your Fridge</h3>
+          <p className="text-sm text-muted-foreground text-center mb-2">
             Take a photo of your fridge or ingredients
+          </p>
+          <p className="text-xs text-primary font-medium mb-6">
+            💡 Tip: Use good lighting and make items clearly visible
           </p>
           <div className="flex gap-3">
             <Button 

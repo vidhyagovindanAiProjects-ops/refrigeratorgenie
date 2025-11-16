@@ -19,15 +19,28 @@ const Index = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [capturedImage, setCapturedImage] = useState<string>("");
   const { toast } = useToast();
 
   const handleIngredientsDetected = (
     detectedIngredients: string[],
     hasNonFoodItems: boolean,
-    nonFoodItems: string[]
+    nonFoodItems: string[],
+    imageData: string
   ) => {
     setIngredients(detectedIngredients);
     setRecipes([]); // Clear previous recipes
+    setCapturedImage(imageData);
+  };
+
+  const handleStartOver = () => {
+    setIngredients([]);
+    setRecipes([]);
+    setCapturedImage("");
+    toast({
+      title: "🔄 Starting fresh!",
+      description: "Ready to capture new ingredients",
+    });
   };
 
   const generateRecipes = async (preferences: {
@@ -85,10 +98,10 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-fresh">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-primary drop-shadow-sm">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-3 text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)]">
             🧞 Refrigerator Genie
           </h1>
-          <p className="text-lg text-foreground/80 font-medium">
+          <p className="text-xl text-white/95 font-semibold drop-shadow-md">
             Transform your leftovers into delicious meals! ✨
           </p>
         </div>
@@ -113,9 +126,17 @@ const Index = () => {
         {/* Recipes Section */}
         {recipes.length > 0 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <h2 className="text-2xl font-bold text-center text-primary mb-8">
-              Your Recipe Suggestions 🍳
-            </h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold text-primary">
+                Your Recipe Suggestions 🍳
+              </h2>
+              <button
+                onClick={handleStartOver}
+                className="px-6 py-3 bg-gradient-to-r from-accent to-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              >
+                🔄 Start Over
+              </button>
+            </div>
             <div className="grid gap-6">
               {recipes.map((recipe, index) => (
                 <RecipeCard key={index} recipe={recipe} />
