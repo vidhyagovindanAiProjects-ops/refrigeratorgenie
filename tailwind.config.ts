@@ -56,6 +56,7 @@ export default {
       boxShadow: {
         'soft': 'var(--shadow-soft)',
         'elevated': 'var(--shadow-elevated)',
+        'colorful': 'var(--shadow-colorful)',
       },
       transitionProperty: {
         'smooth': 'var(--transition-smooth)',

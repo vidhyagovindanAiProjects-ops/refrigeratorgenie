@@ -32,29 +32,37 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
+        model: 'google/gemini-2.5-pro',
         messages: [
           {
             role: 'system',
-            content: `You are an expert food ingredient detector. Analyze images and:
-1. Identify ONLY edible food items (fruits, vegetables, meats, dairy, pantry items, etc.)
-2. Ignore non-food items completely (bottles, containers, packaging, utensils, appliances, etc.)
-3. Return a JSON object with this structure:
+            content: `You are an expert at identifying food items and ingredients from refrigerator and pantry images.
+Analyze the provided image carefully and identify all edible food items, ingredients, and beverages with high accuracy.
+
+Return your response as a JSON object with this exact structure:
 {
-  "ingredients": ["ingredient1", "ingredient2", ...],
-  "nonFoodItems": ["item1", "item2", ...],
-  "hasNonFoodItems": true/false
+  "ingredients": ["item1", "item2", ...],
+  "hasNonFoodItems": boolean,
+  "nonFoodItems": ["item1", "item2", ...]
 }
 
-Be specific with ingredient names (e.g., "red bell pepper" not just "pepper").
-Only list ingredients you can clearly identify in the image.`
+Guidelines for accurate detection:
+- Identify fresh produce (fruits, vegetables), packaged foods, dairy products, meats, condiments, beverages, and canned goods
+- Be specific with names (e.g., "cherry tomatoes" not just "tomatoes", "cheddar cheese" not just "cheese")
+- Look carefully at labels on packages and bottles to identify exact products
+- Include items even if partially visible or in the background
+- For produce, identify by color, shape, and appearance
+- If you see non-food items (cleaning supplies, medicines, paper products, etc.), list them in nonFoodItems
+- Prioritize common refrigerator/pantry items
+- Return empty arrays if no items are clearly identifiable
+- Be conservative - only list items you can identify with reasonable confidence`
           },
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Analyze this refrigerator/food image and list all the edible ingredients you can identify. Also flag any non-food items.'
+                text: 'Please analyze this refrigerator/pantry image carefully. Focus on identifying food items with clear labels, recognizable produce, and common grocery items. Pay attention to packaged items with visible labels, fresh fruits and vegetables (identify by color and shape), dairy products, condiments, beverages, and any partially visible items in the background. Return all identified food items in the specified JSON format.'
               },
               {
                 type: 'image_url',
@@ -65,6 +73,7 @@ Only list ingredients you can clearly identify in the image.`
             ]
           }
         ],
+        temperature: 0.3
       }),
     });
 
