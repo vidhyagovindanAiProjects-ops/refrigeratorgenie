@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ChefHat, Sparkles } from "lucide-react";
 import { CameraCapture } from "@/components/CameraCapture";
 import { IngredientsList } from "@/components/IngredientsList";
 import { RecipeCard } from "@/components/RecipeCard";
+import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -30,16 +30,22 @@ const Index = () => {
     setRecipes([]); // Clear previous recipes
   };
 
-  const generateRecipes = async () => {
+  const generateRecipes = async (preferences: {
+    cuisine: string;
+    timeAvailable: string;
+    dietaryPreference: string;
+    mood: string;
+    tastePreference: string;
+  }) => {
     if (ingredients.length === 0) return;
 
     setIsGenerating(true);
     
     try {
-      console.log('Generating recipes for:', ingredients);
+      console.log('Generating recipes with preferences:', preferences);
       
       const { data, error } = await supabase.functions.invoke('generate-recipes', {
-        body: { ingredients }
+        body: { ingredients, ...preferences }
       });
 
       if (error) {
@@ -76,18 +82,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-fresh">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-fresh rounded-full mb-4 shadow-soft">
-            <ChefHat className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-hero bg-clip-text text-transparent">
-            Leftover Recipe AI
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 text-primary drop-shadow-sm">
+            🧞 Refrigerator Genie
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Snap a photo of your fridge, and let AI create delicious recipes from your leftovers
+          <p className="text-lg text-foreground/80 font-medium">
+            Transform your leftovers into delicious meals! ✨
           </p>
         </div>
 
@@ -111,28 +113,18 @@ const Index = () => {
         {/* Recipes Section */}
         {recipes.length > 0 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="flex items-center justify-center gap-2 mb-8">
-              <Sparkles className="w-6 h-6 text-accent" />
-              <h2 className="text-3xl font-bold">Your Recipe Suggestions</h2>
-              <Sparkles className="w-6 h-6 text-accent" />
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold text-center text-primary mb-8">
+              Your Recipe Suggestions 🍳
+            </h2>
+            <div className="grid gap-6">
               {recipes.map((recipe, index) => (
                 <RecipeCard key={index} recipe={recipe} />
               ))}
             </div>
           </div>
         )}
-
-        {/* Empty State */}
-        {ingredients.length === 0 && recipes.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">
-              Start by capturing a photo of your ingredients!
-            </p>
-          </div>
-        )}
       </div>
+      <Footer />
     </div>
   );
 };

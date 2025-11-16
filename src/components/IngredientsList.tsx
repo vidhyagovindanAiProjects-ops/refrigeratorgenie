@@ -3,11 +3,18 @@ import { X, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { PreferencesForm } from "./PreferencesForm";
 
 interface IngredientsListProps {
   ingredients: string[];
   onIngredientsChange: (ingredients: string[]) => void;
-  onGenerateRecipes: () => void;
+  onGenerateRecipes: (preferences: {
+    cuisine: string;
+    timeAvailable: string;
+    dietaryPreference: string;
+    mood: string;
+    tastePreference: string;
+  }) => void;
   isGenerating: boolean;
 }
 
@@ -18,6 +25,11 @@ export const IngredientsList = ({
   isGenerating 
 }: IngredientsListProps) => {
   const [newIngredient, setNewIngredient] = useState("");
+  const [cuisine, setCuisine] = useState("any");
+  const [timeAvailable, setTimeAvailable] = useState("any");
+  const [dietaryPreference, setDietaryPreference] = useState("none");
+  const [mood, setMood] = useState("any");
+  const [tastePreference, setTastePreference] = useState("");
 
   const removeIngredient = (index: number) => {
     onIngredientsChange(ingredients.filter((_, i) => i !== index));
@@ -36,10 +48,20 @@ export const IngredientsList = ({
     }
   };
 
+  const handleGenerate = () => {
+    onGenerateRecipes({
+      cuisine,
+      timeAvailable,
+      dietaryPreference,
+      mood,
+      tastePreference,
+    });
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
       <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
-        <h3 className="text-xl font-semibold mb-4">Detected Ingredients</h3>
+        <h3 className="text-xl font-semibold mb-4">What ingredients do you have? 🥕</h3>
         
         {ingredients.length > 0 ? (
           <div className="flex flex-wrap gap-2 mb-4">
@@ -72,8 +94,8 @@ export const IngredientsList = ({
               value={newIngredient}
               onChange={(e) => setNewIngredient(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Add an ingredient..."
-              className="flex-1"
+              placeholder="e.g., chicken, tomatoes, basil..."
+              className="flex-1 bg-background"
             />
             <Button
               onClick={addIngredient}
@@ -87,21 +109,36 @@ export const IngredientsList = ({
       </div>
 
       {ingredients.length > 0 && (
-        <Button
-          onClick={onGenerateRecipes}
-          disabled={isGenerating}
-          size="lg"
-          className="w-full bg-gradient-hero shadow-soft hover:shadow-elevated transition-smooth text-white"
-        >
-          {isGenerating ? (
-            <>
-              <div className="animate-spin mr-2 h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
-              Generating Recipes...
-            </>
-          ) : (
-            "Generate Recipes"
-          )}
-        </Button>
+        <>
+          <PreferencesForm
+            cuisine={cuisine}
+            setCuisine={setCuisine}
+            timeAvailable={timeAvailable}
+            setTimeAvailable={setTimeAvailable}
+            dietaryPreference={dietaryPreference}
+            setDietaryPreference={setDietaryPreference}
+            mood={mood}
+            setMood={setMood}
+            tastePreference={tastePreference}
+            setTastePreference={setTastePreference}
+          />
+          
+          <Button
+            onClick={handleGenerate}
+            disabled={isGenerating}
+            size="lg"
+            className="w-full bg-accent hover:bg-accent/90 shadow-soft hover:shadow-elevated transition-smooth text-white font-semibold text-lg py-6"
+          >
+            {isGenerating ? (
+              <>
+                <div className="animate-spin mr-2 h-5 w-5 border-2 border-white border-t-transparent rounded-full" />
+                Generating Recipes...
+              </>
+            ) : (
+              "Generate 3 Recipe Options 🧑‍🍳"
+            )}
+          </Button>
+        </>
       )}
     </div>
   );

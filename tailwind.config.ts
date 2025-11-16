@@ -51,6 +51,7 @@ export default {
       backgroundImage: {
         'gradient-fresh': 'var(--gradient-fresh)',
         'gradient-hero': 'var(--gradient-hero)',
+        'gradient-warm': 'var(--gradient-warm)',
       },
       boxShadow: {
         'soft': 'var(--shadow-soft)',

@@ -11,13 +11,27 @@ serve(async (req) => {
   }
 
   try {
-    const { ingredients } = await req.json();
+    const { 
+      ingredients, 
+      cuisine = 'any',
+      timeAvailable = 'any',
+      dietaryPreference = 'none',
+      mood = 'any',
+      tastePreference = ''
+    } = await req.json();
     
     if (!ingredients || ingredients.length === 0) {
       throw new Error('No ingredients provided');
     }
 
-    console.log('Generating recipes for ingredients:', ingredients);
+    console.log('Generating recipes with preferences:', { 
+      ingredients, 
+      cuisine, 
+      timeAvailable, 
+      dietaryPreference, 
+      mood, 
+      tastePreference 
+    });
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) {
@@ -36,7 +50,7 @@ serve(async (req) => {
           {
             role: 'system',
             content: `You are a creative chef who specializes in using leftover ingredients. 
-Generate 3 delicious recipe suggestions based on the provided ingredients.
+Generate 3 delicious recipe suggestions based on the provided ingredients and user preferences.
 Return a JSON array with this structure:
 [
   {
@@ -53,8 +67,19 @@ Make recipes practical and delicious. Include estimated amounts for ingredients.
           },
           {
             role: 'user',
-            content: `Generate 3 recipe suggestions using these ingredients: ${ingredients.join(', ')}. 
-Feel free to suggest common pantry staples (salt, pepper, oil, etc.) but focus on using the main ingredients provided.`
+            content: `Generate 3 recipe suggestions using these ingredients: ${ingredients.join(', ')}.
+
+User Preferences:
+${cuisine !== 'any' ? `- Cuisine: ${cuisine}` : ''}
+${timeAvailable !== 'any' ? `- Time available: ${timeAvailable} minutes` : ''}
+${dietaryPreference !== 'none' ? `- Dietary preference: ${dietaryPreference}` : ''}
+${mood !== 'any' ? `- Mood/Style: ${mood}` : ''}
+${tastePreference ? `- Taste preference: ${tastePreference}` : ''}
+
+Feel free to suggest common pantry staples (salt, pepper, oil, etc.) but focus on using the main ingredients provided.
+Respect all dietary preferences and restrictions strictly.
+Match the cooking time to the available time if specified.
+Match the cuisine style and mood to create appropriate recipes.`
           }
         ],
       }),
