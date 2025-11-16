@@ -98,10 +98,10 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-fresh">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-3 text-heading drop-shadow-[0_2px_4px_rgba(255,255,255,0.3)]">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-3 text-black">
             🧞 Refrigerator Genie
           </h1>
-          <p className="text-xl text-foreground/90 font-semibold">
+          <p className="text-xl text-black font-semibold">
             Transform your leftovers into delicious meals! ✨
           </p>
         </div>
@@ -127,12 +127,12 @@ const Index = () => {
         {recipes.length > 0 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold text-heading">
+              <h2 className="text-2xl font-bold text-black">
                 Your Recipe Suggestions 🍳
               </h2>
               <button
                 onClick={handleStartOver}
-                className="px-6 py-3 bg-secondary text-secondary-foreground font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                className="px-6 py-3 bg-secondary text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
               >
                 🔄 Start Over
               </button>

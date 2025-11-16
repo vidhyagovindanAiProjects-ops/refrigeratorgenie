@@ -61,7 +61,7 @@ export const IngredientsList = ({
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
       <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
-        <h3 className="text-xl font-semibold mb-4 text-heading">What ingredients do you have? 🥕</h3>
+        <h3 className="text-xl font-semibold mb-4 text-black">What ingredients do you have? 🥕</h3>
         
         {ingredients.length > 0 ? (
           <div className="flex flex-wrap gap-2 mb-4">
@@ -127,7 +127,7 @@ export const IngredientsList = ({
             onClick={handleGenerate}
             disabled={isGenerating}
             size="lg"
-            className="w-full bg-primary hover:bg-primary/90 shadow-soft hover:shadow-elevated transition-smooth text-primary-foreground font-semibold text-lg py-6 rounded-full"
+            className="w-full bg-primary hover:bg-primary/90 shadow-soft hover:shadow-elevated transition-smooth text-black font-semibold text-lg py-6 rounded-full"
           >
             {isGenerating ? (
               <>
