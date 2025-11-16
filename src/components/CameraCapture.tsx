@@ -120,7 +120,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
       {!capturedImage ? (
         <div className="relative aspect-[4/3] rounded-2xl border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 flex flex-col items-center justify-center p-8 hover:bg-primary/10 transition-smooth">
           <Camera className="w-16 h-16 text-primary mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-foreground">Capture Your Fridge</h3>
+          <h3 className="text-lg font-semibold mb-2 text-heading">Capture Your Fridge</h3>
           <p className="text-sm text-muted-foreground text-center mb-2">
             Take a photo of your fridge or ingredients
           </p>
@@ -131,7 +131,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
             <Button 
               onClick={handleCameraClick}
               size="lg"
-              className="bg-gradient-fresh shadow-soft hover:shadow-elevated transition-smooth"
+              className="bg-primary text-primary-foreground shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-primary/90"
             >
               <Camera className="mr-2 h-5 w-5" />
               Take Photo
@@ -139,7 +139,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
             <Button 
               onClick={handleCameraClick}
               size="lg"
-              variant="outline"
+              className="bg-secondary text-secondary-foreground shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-secondary/90"
             >
               <Upload className="mr-2 h-5 w-5" />
               Upload
@@ -170,8 +170,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
                   fileInputRef.current.value = '';
                 }
               }}
-              variant="outline"
-              className="absolute bottom-4 right-4"
+              className="absolute bottom-4 right-4 bg-secondary text-secondary-foreground rounded-full shadow-soft hover:shadow-elevated"
             >
               Retake Photo
             </Button>

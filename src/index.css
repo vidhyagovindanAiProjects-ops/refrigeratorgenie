@@ -9,78 +9,83 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 217 19% 27%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 217 19% 27%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 217 19% 27%;
 
-    --primary: 351 95% 71%;
+    --primary: 160 64% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 82 87% 80%;
+    --secondary-foreground: 100 75% 10%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 82 40% 92%;
+    --muted-foreground: 217 19% 45%;
 
-    --accent: 174 62% 47%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 48 96% 53%;
+    --accent-foreground: 100 75% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 351 95% 71%;
+    --border: 100 30% 85%;
+    --input: 100 30% 85%;
+    --ring: 160 64% 52%;
 
     --radius: 1rem;
 
-    /* Custom Design Tokens - Tropical Paradise */
-    --gradient-fresh: linear-gradient(135deg, hsl(153, 80%, 74%) 0%, hsl(197, 71%, 73%) 50%, hsl(164, 75%, 80%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(153, 80%, 74%), hsl(351, 95%, 71%), hsl(340, 97%, 86%));
-    --gradient-warm: linear-gradient(135deg, hsl(27, 100%, 67%), hsl(43, 100%, 72%));
-    --shadow-soft: 0 4px 20px rgba(255, 107, 157, 0.15);
-    --shadow-elevated: 0 8px 32px rgba(255, 107, 157, 0.25);
-    --shadow-colorful: 0 10px 40px rgba(132, 250, 176, 0.3);
+    /* Custom Design Tokens - Fresh & Healthy */
+    --gradient-fresh: linear-gradient(135deg, hsl(84, 71%, 65%) 0%, hsl(100, 57%, 42%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(84, 71%, 65%), hsl(100, 57%, 42%));
+    --gradient-warm: linear-gradient(135deg, hsl(48, 96%, 53%), hsl(82, 87%, 80%));
+    --shadow-soft: 0 4px 20px rgba(52, 211, 153, 0.15);
+    --shadow-elevated: 0 8px 32px rgba(52, 211, 153, 0.25);
+    --shadow-colorful: 0 10px 40px rgba(168, 224, 99, 0.3);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Heading color */
+    --heading: 100 75% 10%;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 0 0% 95%;
+    --background: 100 30% 8%;
+    --foreground: 82 40% 85%;
 
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 100 25% 12%;
+    --card-foreground: 82 40% 85%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 100 25% 10%;
+    --popover-foreground: 82 40% 85%;
 
-    --primary: 351 95% 71%;
+    --primary: 160 64% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 100 40% 20%;
+    --secondary-foreground: 82 87% 80%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 100 20% 18%;
+    --muted-foreground: 82 30% 60%;
 
-    --accent: 174 62% 47%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 48 96% 53%;
+    --accent-foreground: 100 75% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 351 95% 71%;
+    --border: 100 20% 20%;
+    --input: 100 20% 20%;
+    --ring: 160 64% 52%;
 
-    --gradient-fresh: linear-gradient(135deg, hsl(153, 60%, 54%), hsl(197, 61%, 63%));
-    --gradient-hero: linear-gradient(135deg, hsl(153, 60%, 54%), hsl(351, 85%, 61%));
-    --shadow-soft: 0 4px 20px rgba(255, 107, 157, 0.2);
-    --shadow-elevated: 0 8px 32px rgba(255, 107, 157, 0.3);
+    --gradient-fresh: linear-gradient(135deg, hsl(84, 60%, 50%), hsl(100, 50%, 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(84, 60%, 50%), hsl(100, 50%, 35%));
+    --shadow-soft: 0 4px 20px rgba(52, 211, 153, 0.2);
+    --shadow-elevated: 0 8px 32px rgba(52, 211, 153, 0.3);
+    
+    --heading: 82 87% 80%;
   }
 }
 

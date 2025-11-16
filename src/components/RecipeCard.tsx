@@ -34,7 +34,7 @@ export const RecipeCard = ({ recipe }: RecipeCardProps) => {
       <div className="space-y-4">
         <div>
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-2xl font-bold">{recipe.name}</h3>
+            <h3 className="text-2xl font-bold text-heading">{recipe.name}</h3>
           </div>
           <p className="text-muted-foreground">{recipe.description}</p>
         </div>
@@ -51,7 +51,7 @@ export const RecipeCard = ({ recipe }: RecipeCardProps) => {
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Ingredients:</h4>
+          <h4 className="font-semibold mb-2 text-heading">Ingredients:</h4>
           <ul className="space-y-1">
             {recipe.ingredients.map((ingredient, idx) => (
               <li key={idx} className="text-sm text-muted-foreground flex items-start">
@@ -63,7 +63,7 @@ export const RecipeCard = ({ recipe }: RecipeCardProps) => {
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Instructions:</h4>
+          <h4 className="font-semibold mb-2 text-heading">Instructions:</h4>
           <ol className="space-y-2">
             {recipe.instructions.map((instruction, idx) => (
               <li key={idx} className="text-sm text-muted-foreground flex items-start">
