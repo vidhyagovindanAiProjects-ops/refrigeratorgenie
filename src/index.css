@@ -9,38 +9,38 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 217 19% 27%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 217 19% 27%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 217 19% 27%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 160 64% 52%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 174 62% 47%;
+    --primary-foreground: 0 0% 0%;
 
     --secondary: 82 87% 80%;
-    --secondary-foreground: 100 75% 10%;
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 82 40% 92%;
-    --muted-foreground: 217 19% 45%;
+    --muted-foreground: 0 0% 0%;
 
     --accent: 48 96% 53%;
-    --accent-foreground: 100 75% 10%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 100 30% 85%;
+    --border: 100 30% 70%;
     --input: 100 30% 85%;
-    --ring: 160 64% 52%;
+    --ring: 174 62% 47%;
 
     --radius: 1rem;
 
-    /* Custom Design Tokens - Fresh & Healthy */
-    --gradient-fresh: linear-gradient(135deg, hsl(84, 71%, 65%) 0%, hsl(100, 57%, 42%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(84, 71%, 65%), hsl(100, 57%, 42%));
+    /* Custom Design Tokens - Yellow-Green-Teal Gradient */
+    --gradient-fresh: linear-gradient(135deg, hsl(60, 80%, 70%) 0%, hsl(100, 60%, 60%) 50%, hsl(174, 62%, 47%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(60, 80%, 70%), hsl(100, 60%, 60%), hsl(174, 62%, 47%));
     --gradient-warm: linear-gradient(135deg, hsl(48, 96%, 53%), hsl(82, 87%, 80%));
     --shadow-soft: 0 4px 20px rgba(52, 211, 153, 0.15);
     --shadow-elevated: 0 8px 32px rgba(52, 211, 153, 0.25);
@@ -48,7 +48,7 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Heading color */
-    --heading: 100 75% 10%;
+    --heading: 0 0% 0%;
   }
 
   .dark {

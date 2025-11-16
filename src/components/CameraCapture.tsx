@@ -120,18 +120,18 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
       {!capturedImage ? (
         <div className="relative aspect-[4/3] rounded-2xl border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5 flex flex-col items-center justify-center p-8 hover:bg-primary/10 transition-smooth">
           <Camera className="w-16 h-16 text-primary mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-heading">Capture Your Fridge</h3>
-          <p className="text-sm text-muted-foreground text-center mb-2">
+          <h3 className="text-lg font-semibold mb-2 text-black">Capture Your Fridge</h3>
+          <p className="text-sm text-black text-center mb-2">
             Take a photo of your fridge or ingredients
           </p>
-          <p className="text-xs text-primary font-medium mb-6">
+          <p className="text-xs text-black font-medium mb-6">
             💡 Tip: Use good lighting and make items clearly visible
           </p>
           <div className="flex gap-3">
             <Button 
               onClick={handleCameraClick}
               size="lg"
-              className="bg-primary text-primary-foreground shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-primary/90"
+              className="bg-primary text-black shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-primary/90 font-semibold"
             >
               <Camera className="mr-2 h-5 w-5" />
               Take Photo
@@ -139,7 +139,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
             <Button 
               onClick={handleCameraClick}
               size="lg"
-              className="bg-secondary text-secondary-foreground shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-secondary/90"
+              className="bg-secondary text-black shadow-soft hover:shadow-elevated transition-smooth rounded-full hover:bg-secondary/90 font-semibold"
             >
               <Upload className="mr-2 h-5 w-5" />
               Upload
@@ -157,8 +157,8 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
             <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-2xl flex items-center justify-center">
               <div className="text-center">
                 <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-                <p className="text-lg font-semibold">Analyzing ingredients...</p>
-                <p className="text-sm text-muted-foreground">This may take a moment</p>
+                <p className="text-lg font-semibold text-black">Analyzing ingredients...</p>
+                <p className="text-sm text-black">This may take a moment</p>
               </div>
             </div>
           )}
@@ -170,7 +170,7 @@ export const CameraCapture = ({ onIngredientsDetected }: CameraCaptureProps) => 
                   fileInputRef.current.value = '';
                 }
               }}
-              className="absolute bottom-4 right-4 bg-secondary text-secondary-foreground rounded-full shadow-soft hover:shadow-elevated"
+              className="absolute bottom-4 right-4 bg-secondary text-black rounded-full shadow-soft hover:shadow-elevated font-semibold"
             >
               Retake Photo
             </Button>

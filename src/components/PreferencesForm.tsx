@@ -29,7 +29,7 @@ export const PreferencesForm = ({
 }: PreferencesFormProps) => {
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4">
-      <h3 className="text-xl font-semibold text-center mb-4 text-heading">Customize Your Recipes ✨</h3>
+      <h3 className="text-xl font-semibold text-center mb-4 text-black">Customize Your Recipes ✨</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
